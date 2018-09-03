@@ -70,7 +70,7 @@ def process_articles(news_list):
     
     #Function that processes the news sources and transforms them to a list of objects
     
-     news_articles = []
+    news_articles = []
     news_dictionary = {}   
     
     for news in news_list:
