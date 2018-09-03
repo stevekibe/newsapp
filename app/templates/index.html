@@ -1,67 +1,161 @@
-{% endfor %} {% endmacro %} {% macro displayNewsList(news_list) %} {% for news in news_list %}
+{% extends 'base.html' %} {% import 'macros.html' as macro %} {% if title %}
+<title>{{title}}</title>
+{% else %}
 
-<div class="container">
-<div class="row jumbotron">
-    <div class="col-sm-4">
-        <img src="{{news.urlToImage}}" alt="{{news.title}}" class="img-responsive">
-    </div>
-    
-    <div class="col-sm-6">
-        <h4>{{news.title}}</h4>
-        <p style="font-size: 16px;">{{news.description|truncate(200)}}&ensp;<span>
-            <a href="{{news.url}}" target="_blank"><span style="color: white;">Read More...</span></a>
-        </span></p>
-        
-        <p style="font-size: 1em; color: darkgrey;">Date published: {{news.publishedAt}}</p>
-    </div>
-</div>
-</div>
+<title>Timeline-NEWS</title>
+{% endif %}
+{% block content %}
 
-<style>
-    h4 {
-        color: white;
-    }
+<!--This the place of the side bar-->
 
-    .jumbotron {
-        background-color: darkorange;
-        margin-top: 2%;
-    }
-</style>
-
-{% endfor %} {% endmacro %}
-
-{% macro displayCategoriesList(categories_list) %} {% for category in categories_list %}
-
-<div class="container">
-    <div class="row jumbotron" style="padding: 0% 0% 0% 2%">
-        <div class="col-sm-4">
-            <img src="{{category.urlToImage}}" alt="{{category.title}}" class="img-responsive">
+<div class="container" style="background-color:rgb(8, 7, 7);" >
+    <hr>
+    <h1 style="text-align: center; color: aliceblue"><span>WELCOME TO TIME NEWS</span></h1>
+    <hr>
+    <div class="row">
+        <div class="col-sm-3" style="height: 100vh; width: 12em; overflow: scroll; background-color: black; color: aliceblue">
+            <hr>
+            <h4>General Sources</h4>
+            <hr>
+            <div>
+                {{macro.displaySourceList(general)}}
+            </div>
+            <hr>
+            <h4>Bussiness Sources</h4>
+            <div>
+                {{macro.displaySourceList(business)}}
+            </div>
+            <hr>
+            <h4>Entertainment</h4>
+            <hr>
+            <div>
+                {{macro.displaySourceList(entertainment)}}
+            </div>
+            <hr>
+            <h4>Health</h4>
+            <hr>
+            <div>
+                {{macro.displaySourceList(health)}}
+            </div>
+            <hr>
+            <h4>Technology</h4>
+            <hr>
+            <div>
+                {{macro.displaySourceList(technology)}}
+            </div>
+            <hr>
+            <h4>Sports</h4>
+            <hr>
+            <div>
+                {{macro.displaySourceList(sports)}}
+            </div>
         </div>
 
-        <div class="col-sm-6">
-            <h4>{{category.title}}</h4>
-            <p style="font-size: 16px;">{{category.description|truncate(200)}}&ensp;
-                <span>
-                    <a href="{{category.url}}" target="_blank">
-                        <span style="color: white;">Read More...</span>
-                    </a>
-                </span>
-            </p>
+        <div class="col-sm-9" style="margin-left: 2.5%; margin-top: 2.5%; ">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="jumbotron">
+                        <div class="panel-heading" style=" font-size: 20px">
+                            <span>General News</span>
+                        </div>
+                        <a href="{{ url_for('main.general', category='general') }}">
+                            View Articles
+                        </a><var>y</var>
 
-            <p style="font-size: 1em; color: darkgrey;">Date published: {{category.publishedAt}}</p>
+                        <style>
+                            .jumbotron {
+                                margin: 5% 0.5% 0.5% 0.5%;
+                                background-color: aliceblue;
+                            }
+                        </style>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="jumbotron">
+                        <div class="panel-heading" style="font-size: 20px">
+                            <span>Business News</span>
+                        </div>
+                        <a href="{{ url_for('main.general', category= 'business')}}">
+                            View Articles
+                        </a>
+                        <style>
+                            .jumbotron{
+                                margin: 5% 0.5% 0.5% 0.5%;
+                                background-color: aliceblue;
+                            }
+                        </style>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                        <div class="jumbotron">
+                            <div class="panel-heading" style="font-size: 20px" >
+                                <span>Entertainment News</span>
+                            </div>
+                            <a href="{{ url_for('main.general', category= 'entertainment')}}">
+                                View Articles
+                            </a>
+                            <style>
+                                .jumbotron{
+                                    margin: 5% 0.5% 0.5% 0.5%;
+                                    background-color: aliceblue;
+                                }
+                            </style>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="row" style="margin-top: 3%;">
+                <div class="col-sm-4">
+                    <div class="jumbotron">
+                        <div class="panel-heading" style="font-size: 20px">
+                            <span>Health News</span>
+                        </div>
+                        <a href="{{ url_for('main.general', category= 'health')}}">
+                            View Articles
+                        </a>
+                        <style>
+                            .jumbotron{
+                                margin: 5% 0.5% 0.5% 0.5%;
+                                background-color: aliceblue;
+                            }
+                        </style>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="jumbotron">
+                        <div class="panel-heading" style="font-size: 20px">
+                                 <span>Sports News</span>
+                        </div>
+                        <a href="{{ url_for('main.general', category= 'sports')}}">
+                            View Articles
+                        </a>
+                            <style>
+                                .jumbotron{
+                                     margin: 5% 0.5% 0.5% 0.5%;
+                                     background-color: aliceblue;
+                                }
+                            </style>
+                        </div>
+                    </div>
+                            <div class="col-sm-4">
+                                <div class="jumbotron">
+                                    <div class="panel-heading" style="font-size: 20px">
+                                        <span>Technology News</span>
+                                    </div>
+                                    <a href="{{ url_for('main.general', category= 'technology')}}">
+                                        View Articles
+                                    </a>
+                                    <style>
+                                        .jumbotron{
+                                         margin: 5% 0.5% 0.5% 0.5%;
+                                        background-color: aliceblue;
+                                        }
+                                    </style>
+                                </div>
+                            </div>
+            </div>
         </div>
     </div>
 </div>
-
-<style>
-    h4 {
-        color: white;
-    }
-
-    .jumbotron {
-        background-color: darkcyan;
-        margin-top: 2%;
-    }
-</style>
-
-{% endfor %} {% endmacro %}
+{% endblock %}
