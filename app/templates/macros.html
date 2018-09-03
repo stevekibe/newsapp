@@ -12,3 +12,71 @@
         padding: 0.5em 0em 0.5em;
     }
 </style>
+
+{% endfor %} {% endmacro %} {% macro displayNewsList(news_list) %} {% for news in news_list %}
+
+<div class="container">
+<div class="row jumbotron">
+    <div class="col-sm-4">
+        <img src="{{news.urlToImage}}" alt="{{news.title}}" class="img-responsive">
+    </div>
+    
+    <div class="col-sm-6">
+        <h4>{{news.title}}</h4>
+        <p style="font-size: 16px;">{{news.description|truncate(200)}}&ensp;<span>
+            <a href="{{news.url}}" target="_blank"><span style="color: white;">Read More...</span></a>
+        </span></p>
+        
+        <p style="font-size: 1em; color: darkgrey;">Date published: {{news.publishedAt}}</p>
+    </div>
+</div>
+</div>
+
+<style>
+    h4 {
+        color: white;
+    }
+
+    .jumbotron {
+        background-color: darkorange;
+        margin-top: 2%;
+    }
+</style>
+
+{% endfor %} {% endmacro %}
+
+{% macro displayCategoriesList(categories_list) %} {% for category in categories_list %}
+
+<div class="container">
+    <div class="row jumbotron" style="padding: 0% 0% 0% 2%">
+        <div class="col-sm-4">
+            <img src="{{category.urlToImage}}" alt="{{category.title}}" class="img-responsive">
+        </div>
+
+        <div class="col-sm-6">
+            <h4>{{category.title}}</h4>
+            <p style="font-size: 16px;">{{category.description|truncate(200)}}&ensp;
+                <span>
+                    <a href="{{category.url}}" target="_blank">
+                        <span style="color: white;">Read More...</span>
+                    </a>
+                </span>
+            </p>
+
+            <p style="font-size: 1em; color: darkgrey;">Date published: {{category.publishedAt}}</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    h4 {
+        color: white;
+    }
+
+    .jumbotron {
+        background-color: darkcyan;
+        margin-top: 2%;
+    }
+</style>
+
+{% endfor %} {% endmacro %}
