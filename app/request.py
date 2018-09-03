@@ -70,3 +70,67 @@ def process_articles(news_list):
     
     #Function that processes the news sources and transforms them to a list of objects
     
+     news_articles = []
+    news_dictionary = {}   
+    
+    for news in news_list:
+        news_id = news['source']
+
+        news_dictionary['id'] = news_id['id']
+        news_dictionary['name'] = news_id['name']
+
+        id = news_dictionary['id']
+        name = news_dictionary['name']         
+
+        author = news.get('author')
+        title = news.get('title')
+        description = news.get('description')
+        url = news.get('url')
+        urlToImage = news.get('urlToImage')
+        publishedAt = news.get('publishedAt')
+        
+        if urlToImage:
+            news_object = News(author, title, description, url, urlToImage, publishedAt)
+            news_articles.append(news_object)
+          
+    return news_articles
+
+
+def get_category(category):
+    
+    #Function that gets the json response to our url request
+    
+    get_sources_url = category_url.format(category, api_key)
+
+    with urllib.request.urlopen(get_sources_url) as url:
+        get_categories_data = url.read()
+        get_categories_response = json.loads(get_categories_data)
+
+        news_categories_articles = None
+
+        if get_categories_response['articles']:
+            news_categories_list = get_categories_response['articles']
+            news_categories_articles = process_categories(news_categories_list)
+
+    return news_categories_articles
+
+
+def process_categories(categories_list):
+    
+    #Function that processes the news sources and transforms them to a list of objects
+    
+    news_categories_articles = []
+
+    for category in categories_list:
+        title = category.get('title')
+        description = category.get('description')
+        url = category.get('url')
+        urlToImage = category.get('urlToImage')
+        publishedAt = category.get('publishedAt')
+
+        if urlToImage:
+            source_object = Category(title, description, url, urlToImage, publishedAt)
+            news_categories_articles.append(source_object)
+
+    return news_categories_articles
+
