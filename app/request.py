@@ -37,4 +37,36 @@ def get_sources(category):
     return news_sources
 
 def process_sources(sources_list):
+    #Function that processes the news sources and transforms them to a list of objects
+    
+    news_articles = []
+    for source in sources_list:
+        id = source.get('id')
+        name = source.get('name')
+        url = source.get('url')       
+       
+        if name:
+            source_object = Source(id, name, url)
+            news_articles.append(source_object) 
+                
+    return news_articles  
+
+def get_news(id):
+    get_news_url = news_url.format(id, api_key)
+    
+    with urllib.request.urlopen(get_news_url) as url:
+        news_data = url.read()
+        news_response = json.loads(news_data)
+
+        news_articles = None
+
+        if news_response['articles']:
+            news_articles_list = news_response['articles']
+            news_articles = process_articles(news_articles_list)  
+           
+    return news_articles    
+    
+def process_articles(news_list):
+    
+    #Function that processes the news sources and transforms them to a list of objects
     
