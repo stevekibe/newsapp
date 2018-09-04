@@ -1,13 +1,7 @@
 import urllib.request,json
 from .models import News, Source, Category
 
-
-#getting api key
-
 api_key = None 
-
-#Getting the news base url
-
 base_url = None
 news_url = None
 category_url = None
@@ -19,6 +13,7 @@ def configure_request(app):
     news_url = app.config['NEWS_API_BASE_URL']
     category_url = app.config['CATEGORY_API_BASE_URL']
 def get_sources(category):
+    
     '''
     method that gets the json response to our url request
     '''
@@ -37,9 +32,13 @@ def get_sources(category):
     return news_sources
 
 def process_sources(sources_list):
-    #method that processes the news sources and transforms them to a list of objects
     
-    news_articles = []
+    '''
+    method that tranforms sources to list of obejects
+    '''
+    
+    
+    news_articles = []#empty list
     for source in sources_list:
         id = source.get('id')
         name = source.get('name')
@@ -67,11 +66,11 @@ def get_news(id):
     return news_articles    
     
 def process_articles(news_list):
-    
-    #method that processes the news sources and transforms them to a list of objects
-    
+    '''
+    method that covert articles to  objects 
+    '''
     news_articles = []#empty list
-    news_dictionary = {}   
+    news_dictionary = {} #new dictonary 
     
     for news in news_list:
         news_id = news['source']
@@ -98,7 +97,9 @@ def process_articles(news_list):
 
 def get_category(category):
     
-    #Function that gets the json response to our url request
+    '''
+    method that gets the json response to our url request
+    '''
     
     get_sources_url = category_url.format(category, api_key)
 
@@ -117,9 +118,11 @@ def get_category(category):
 
 def process_categories(categories_list):
     
-    #Function that processes the news sources and transforms them to a list of objects
-    
-    news_categories_articles = []
+    '''
+    method that changes category to list of objects
+    '''
+
+    news_categories_articles = []#list of objects
 
     for category in categories_list:
         title = category.get('title')
