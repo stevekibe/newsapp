@@ -16,7 +16,7 @@ def index():
     technology_news = get_sources('technology')
     sports_news = get_sources('sports')
 
-    title = "T-News"
+    title = "Time-News"
     return render_template('index.html', title=title, general = general_news,
     business = business_news, entertainment = entertainment_news, health = health_news, technology = technology_news, sports = sports_news)
 
