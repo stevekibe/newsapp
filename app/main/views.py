@@ -6,7 +6,7 @@ from ..request import get_sources, get_news, get_category
 @main.route('/')
 def index():
     '''
-    view root page function that returns the index page and its data
+    method to route the main newws in the app
     '''
     # having the new category
     general_news = get_sources( 'general' )
@@ -23,7 +23,7 @@ def index():
 @main.route('/news/<id>')
 def general(id):
     '''
-    view root page function that returns the news page and its data
+    method to ruote the general news html
     '''
     news_articles = get_news(id)
        
@@ -36,7 +36,7 @@ def general(id):
 @main.route('/categories/<category>')
 def news(category):
     '''
-    view page function that returns the categories page and its data
+    method to route the news catergory
     '''
     news_categories_articles = get_category(category)
 
@@ -46,7 +46,7 @@ def news(category):
 @main.route('/categories/<category>')
 def sports(category):
     '''
-    view page function that returns the categories page and its data
+    method to route the sports category
     '''
     news_categories_articles = get_category(category)
 
@@ -56,7 +56,7 @@ def sports(category):
 @main.route('/categories/<category>')
 def health(category):
     '''
-    view  page function that returns the categories page and its data
+    method to ruote the health category
     '''
     news_categories_articles = get_category(category)
 
@@ -66,7 +66,7 @@ def health(category):
 @main.route('/categories/<category>')
 def technology(category):
     '''
-    view root page function that returns the categories page and its data
+    method to route the technolgy category
     '''
     news_categories_articles = get_category(category)
 
