@@ -21,9 +21,9 @@ def index():
     business = business_news, entertainment = entertainment_news, health = health_news, technology = technology_news, sports = sports_news)
 
 @main.route('/news/<id>')
-def general(id):
+def news(id):
     '''
-    method to ruote the general news html
+    method to ruote the news
     '''
     news_articles = get_news(id)
        
@@ -34,7 +34,7 @@ def general(id):
     
 
 @main.route('/categories/<category>')
-def news(category):
+def general(category):
     '''
     method to route the news catergory
     '''

@@ -36,8 +36,6 @@ def process_sources(sources_list):
     '''
     method that tranforms sources to list of obejects
     '''
-    
-    
     news_articles = []#empty list
     for source in sources_list:
         id = source.get('id')
