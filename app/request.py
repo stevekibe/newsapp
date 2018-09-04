@@ -20,7 +20,7 @@ def configure_request(app):
     category_url = app.config['CATEGORY_API_BASE_URL']
 def get_sources(category):
     '''
-    Function that gets the json response to our url request
+    method that gets the json response to our url request
     '''
     get_sources_url = base_url.format(category, api_key)
 
@@ -37,7 +37,7 @@ def get_sources(category):
     return news_sources
 
 def process_sources(sources_list):
-    #Function that processes the news sources and transforms them to a list of objects
+    #method that processes the news sources and transforms them to a list of objects
     
     news_articles = []
     for source in sources_list:
@@ -68,9 +68,9 @@ def get_news(id):
     
 def process_articles(news_list):
     
-    #Function that processes the news sources and transforms them to a list of objects
+    #method that processes the news sources and transforms them to a list of objects
     
-    news_articles = []
+    news_articles = []#empty list
     news_dictionary = {}   
     
     for news in news_list:
